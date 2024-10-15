@@ -3,7 +3,8 @@ import { NgxChessBoardModule, NgxChessBoardView} from 'ngx-chess-board';
 
 import { Message } from '../../models/message.model';
 import { MoveMessage } from '../../models/move-message.model';
-import { MessageType } from '../../models/message-types.enum';
+import { MessageType } from '../../enums/message-type.enum';
+import { PlayerId } from 'src/enums/player-id.enum';
 
 @Component({
   selector: 'app-board',
@@ -15,7 +16,7 @@ import { MessageType } from '../../models/message-types.enum';
 export class BoardComponent {
   @ViewChild('board', {static: false}) board!: NgxChessBoardView;
 
-  id!: string;
+  id!: PlayerId;
   size = 420;
   lightDisabled = false;
   darkDisabled = false;
@@ -28,10 +29,10 @@ export class BoardComponent {
   handleMessage(event: Event) {
     const message = event as MessageEvent;
     switch (message.data.type) {
-      case MessageType.DISABLEDARK:
+      case MessageType.DISABLE_DARK:
         this.darkDisabled = true;
         break;
-      case MessageType.DISABLELIGHT:
+      case MessageType.DISABLE_LIGHT:
         this.lightDisabled = true;
         break;
       case MessageType.SETID:
