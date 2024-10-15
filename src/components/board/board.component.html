@@ -1,0 +1,7 @@
+<ngx-chess-board #board 
+  [size]="size" 
+  [lightDisabled]="lightDisabled"
+  [darkDisabled]="darkDisabled"
+  [freeMode]="false"
+  (moveChange)="moveCallback($event)"
+></ngx-chess-board>

@@ -1,0 +1,19 @@
+<main class="main">
+
+  <div [ngClass]="gameReady ? 'board-container' : 'd-none'"> 
+    <div>
+      <h1 class="text-align-center" [style.color]="!gameFinished && playerOneTurn ? 'lightgreen' : 'black'">Player 1</h1>
+      <iframe scrolling="no" class="board" #iframe1 src="iframepage"></iframe>
+    </div>
+    <div>
+      <h1 class="text-align-center" [style.color]="!gameFinished && !playerOneTurn ? 'lightgreen' : 'black'">Player 2</h1>
+      <iframe scrolling="no" class="board" #iframe2 src="iframepage"></iframe>
+    </div>
+  </div>
+
+  <div *ngIf="!gameReady">
+    <h1 class="text-align-center">Loading...</h1>
+  </div>
+  
+  <button *ngIf="gameFinished" class="button" (click)="resetGame()">Create new game</button>
+</main>
