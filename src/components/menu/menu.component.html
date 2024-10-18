@@ -1,4 +1,13 @@
 <main class = "main">
+  <h1>Welcome to my Chess Project! :)</h1>
   <button class="button" (click)="goToLocalGame()">Play Local Game</button>
-  <button class="button" disabled (click)="goToOnlineGame()">Play Online Game (Under Development!)</button>
+  <button class="button" (click)="createOnlineGame()">Create Online Game</button>
+  <button class="button" (click)="showGameCodeInput()">Join Online Game</button>
+
+  <div *ngIf="showInputJoinGame">
+    <p class="text-align-center">Insert game ID:</p>
+    <input type="text" [(ngModel)]="gameId">
+    <button (click)="joinOnlineGame()">Join Game</button>
+  </div>
+
 </main>
