@@ -22,7 +22,6 @@ export class MainComponent {
   @ViewChild('iframe2') iframe2!: ElementRef<HTMLIFrameElement>;
   playerTwoIframe!: Window;
 
-  lastPosition!: string;
   gameReady: boolean = false;
   gameFinished: boolean = false;
   playerOneTurn!: boolean;
@@ -42,12 +41,11 @@ export class MainComponent {
     const message = event as MessageEvent;
     switch (message.data.type) {
       case MessageType.MOVE:
-        if (this.lastPosition !== message.data.position)
-          this.broadcastMoveMessage(message.data);
+        this.broadcastMoveMessage(message.data);
         break;
       case MessageType.CHECKMATE:
         if (!this.gameFinished) {
-          alert("Checkmate! Click on 'Create new game' to start a new game.");
+          alert("Checkmate! Click on 'Create New Game' to start a new game.");
           this.gameFinished = true;
         }
       break;
@@ -61,7 +59,6 @@ export class MainComponent {
       let positions = JSON.parse(localStorage.getItem("positions")!);
       positions.push(message.position);
       localStorage.setItem("positions", JSON.stringify(positions));
-      this.lastPosition = message.position;
     }
 
     if (message.source == PlayerId.PLAYER_ONE_ID) {

@@ -20,6 +20,7 @@ export class BoardComponent {
   size = 420;
   lightDisabled = false;
   darkDisabled = false;
+  lastPosition: string = '';
 
   @HostListener('window:message', ['$event'])
   onMessage(event: any) {
@@ -39,6 +40,7 @@ export class BoardComponent {
         this.id = message.data.id;
         break;
       case MessageType.MOVE:
+        this.lastPosition = message.data.position;
         this.board.move(message.data.position);
         break;
       case MessageType.REVERSE:
@@ -51,7 +53,8 @@ export class BoardComponent {
   }
 
   moveCallback(position: any): void {
-    parent.postMessage(new MoveMessage(position.move, this.id), location.origin);
+    if (this.lastPosition != position.move) 
+      parent.postMessage(new MoveMessage(position.move, this.id), location.origin);
     if (position.checkmate) {
       parent.postMessage(new Message(MessageType.CHECKMATE, this.id), location.origin);
     }
