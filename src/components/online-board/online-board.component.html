@@ -1,0 +1,6 @@
+<main class="main">
+  <h1>{{gameMessage}}</h1>
+  <iframe scrolling="no" class="board" #iframe src="iframepage"></iframe>
+  <h2 *ngIf="showGameCode && !gameFinished">Game ID is {{gameId}}. Send it to your friend!</h2>
+  <button *ngIf="gameFinished" class="button" (click)="goToMainMenu()">Return to Main Menu</button>
+</main>
