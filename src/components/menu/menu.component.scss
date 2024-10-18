@@ -5,32 +5,3 @@
   justify-content: center;
   align-items: center;
 }
-
-.button {
-  background-color: #000;
-  color: #fff; 
-  border: 2px solid #000; 
-  border-radius: 5px; 
-  padding: 10px 20px; 
-  font-family: 'Courier New', serif;
-  font-size: 16px; 
-  font-weight: bold;
-  text-align: center;
-  display: inline-block;
-  margin: 1rem auto;
-
-  &:hover {
-    background-color: #444; 
-    color: #fff;
-    border-color: #444; 
-    cursor: pointer;
-  }
-
-  &:disabled {
-    background-color: #ccc;
-    color: #666; 
-    border-color: #ccc; 
-    cursor: not-allowed; 
-    pointer-events: none;
-  }
-}
